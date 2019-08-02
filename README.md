@@ -24,5 +24,5 @@ $ docker build -t obpmodif .
 
 ## Contruccion del contenedor con la imagen
 ```sh
-$ docker run -d -p 8080-8082:8080-8082 --name obpmodif obpmodif
+$ docker run -dti -p 8080-8082:8080-8082 --name obpmodif obpmodif
 ```
