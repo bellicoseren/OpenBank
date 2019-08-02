@@ -19,7 +19,7 @@ $ mvn package
 
 ## Construccion de imagen
 ```sh
-$ docker build --no-cache -t obpmodif .
+$ docker build -t obpmodif .
 ```
 
 ## Contruccion del contenedor con la imagen
