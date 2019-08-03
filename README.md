@@ -1,28 +1,15 @@
-## SOCIAL FINANCE >
-
-```sh 
-$ mvn package
-```
 
 
-## API EXPLORER > 
-```sh 
-$ mvn package
-```
+![N|Solid](https://static.openbankproject.com/images/OBP_full_web.png)
 
-## OBP API
+## Ejecutar el comando a nivel de raiz del proyecto
 
 ```sh
-./mvn.sh install -pl .,obp-commons && ./mvn.sh jetty:run -pl obp-api
+$ docker-compose up --build --remove-orphans -d
 ```
 
+## Ejecutar el comando a nivel para destruir el contenedor.
 
-## Construccion de imagen
 ```sh
-$ docker build -t obpmodif .
-```
-
-## Contruccion del contenedor con la imagen
-```sh
-$ docker run -dti -p 8080-8082:8080-8082 --name obpmodif obpmodif
+$ docker-compose down
 ```
