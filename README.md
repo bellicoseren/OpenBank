@@ -51,3 +51,9 @@ cd /opt/OBP/
 
 $ bash run_servers
 ```
+
+# Peticion para generar Token
+
+```sh
+curl -X POST -H 'Authorization: DirectLogin username="raul", password="1q2w3e4r5t&Y", consumer_key="jnejg5giuqsdth1fsubkyczbcs5g0fcvp1oiha1s"' -H 'Content-Type: application/json' 'http://localhost:8080/my/logins/direct' HTTP/1.1
+```sh
