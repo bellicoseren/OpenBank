@@ -2,6 +2,9 @@ FROM openbankproject/obp-base
 MAINTAINER OpenBankProject <contact@openbankproject.com> NovaSolutionsSystems <rgutierrez@novasolutionsystems.com>
 EXPOSE 8080 8081 8082
 
+# Instalando fuser Ex: fuser -n tcp 8080
+RUN apt-get install psmisc
+
 # Clone all repositories
 RUN cd /opt/OBP/ && git clone https://github.com/OpenBankProject/OBP-API.git
 RUN cd /opt/OBP/ && git clone https://github.com/OpenBankProject/Social-Finance.git
@@ -43,7 +46,8 @@ ENV "OBP_API_HOSTNAME"=http://localhost:8080 \
 ## Run script
 WORKDIR /usr/local/sbin/
 COPY run_obp .
-#CMD bash run_obp
+WORKDIR /opt/OBP/
+COPY run_servers .
 
 #Bash
 CMD ["/bin/bash"]

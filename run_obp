@@ -50,4 +50,4 @@ echo "Replacing properties for API"
 
 
 # Start supervisor
-exec /etc/init.d/supervisor start
+#exec /etc/init.d/supervisor start

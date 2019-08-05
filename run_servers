@@ -1,0 +1,9 @@
+#!/bin/bash
+echo "Ejecutando Servidores OBP_NOVASOLUTIONSYSTEMS"
+cd /opt/OBP/OBP-API
+nohup ./mvn.sh install -pl .,obp-commons && ./mvn.sh jetty:run -pl obp-api &
+cd /opt/OBP/Social-Finance
+nohup mvn jetty:run -Djetty.port=8081 &
+cd /opt/OBP/API-Explorer
+nohup mvn jetty:run -Djetty.port=8082 &
+/bin/bash
