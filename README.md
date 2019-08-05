@@ -31,7 +31,7 @@ $ ./mvn.sh install -pl .,obp-commons && ./mvn.sh jetty:run -pl obp-api
 ```sh
 cd /opt/OBP/Social-Finance
 
-$ mvn jetty:run -Djetty.port=8082 -DskipTests
+$ mvn jetty:run -Djetty.port=8081 -DskipTests
 
 ```
 

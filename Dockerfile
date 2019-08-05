@@ -19,22 +19,18 @@ COPY *.conf /etc/supervisor/conf.d/
 WORKDIR /opt/OBP/OBP-Docker/full/props
 RUN cp Social-Finance.default.props /opt/OBP/Social-Finance/src/main/resources/props/default.props
 WORKDIR /opt/OBP/Social-Finance/
-#RUN mvn package -DskipTests
 # /Social Finance
 
 # API EXPLORER
 WORKDIR /opt/OBP/OBP-Docker/full/props
 RUN cp API-Explorer.default.props /opt/OBP/API-Explorer/src/main/resources/props/default.props
 WORKDIR /opt/OBP/API-Explorer/
-#RUN mvn package -DskipTests
 # /API EXPLORER
 
 # API
 WORKDIR /opt/OBP/OBP-API/obp-api/src/main/resources/props
-RUN mv sample.props.template default.props
+COPY default.props .
 WORKDIR /opt/OBP/OBP-API
-#RUN ./mvn.sh install -pl .,obp-commons
-#RUN mvn package -DskipTests
 # /API
 
 #Enviroments
@@ -43,7 +39,7 @@ ENV "OBP_API_HOSTNAME"=http://localhost:8080 \
     "OBP_BASE_URL_SOCIAL_FINANCE"=http://localhost:8081 \
     "OBP_WEBUI_API_EXPLORER_URL"=http://localhost:8082
 
-## Run script
+# Run script
 WORKDIR /usr/local/sbin/
 COPY run_obp .
 WORKDIR /opt/OBP/
