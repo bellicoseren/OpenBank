@@ -11,4 +11,4 @@ services:
       - "8081:8081"
       - "8082:8082"
     command: "bash run_obp"
-    tty: true
+    #tty: true

@@ -13,59 +13,37 @@ COPY *.conf /etc/supervisor/conf.d/
 # /Supervisor
 
 # Social Finance
-WORKDIR /opt/OBP/OBP-Docker/full
-#RUN cp lift_proto.db.h2.db /opt/OBP/OBP-API/ temporal
 WORKDIR /opt/OBP/OBP-Docker/full/props
 RUN cp Social-Finance.default.props /opt/OBP/Social-Finance/src/main/resources/props/default.props
 WORKDIR /opt/OBP/Social-Finance/
-#COPY 8081run.sh ./run.sh
-RUN mvn package -DskipTests
+#RUN mvn package -DskipTests
 # /Social Finance
 
 # API EXPLORER
 WORKDIR /opt/OBP/OBP-Docker/full/props
 RUN cp API-Explorer.default.props /opt/OBP/API-Explorer/src/main/resources/props/default.props
 WORKDIR /opt/OBP/API-Explorer/
-#COPY 8082run.sh ./run.sh
-RUN mvn package -DskipTests
+#RUN mvn package -DskipTests
 # /API EXPLORER
 
 # API
 WORKDIR /opt/OBP/OBP-API/obp-api/src/main/resources/props
 RUN mv sample.props.template default.props
 WORKDIR /opt/OBP/OBP-API
-#COPY 8080run.sh ./run.sh
-RUN ./mvn.sh install -pl .,obp-commons
+#RUN ./mvn.sh install -pl .,obp-commons
+#RUN mvn package -DskipTests
 # /API
 
 #Enviroments
-ENV "OBP_API_HOSTNAME"=http://localhost:8080
-ENV "OBP_BASE_URL_API_EXPLORER"=http://localhost:8082
-ENV "OBP_BASE_URL_SOCIAL_FINANCE"=http://localhost:8081
-ENV "OBP_WEBUI_API_EXPLORER_URL"=http://localhost:8082
+ENV "OBP_API_HOSTNAME"=http://localhost:8080 \
+    "OBP_BASE_URL_API_EXPLORER"=http://localhost:8082 \
+    "OBP_BASE_URL_SOCIAL_FINANCE"=http://localhost:8081 \
+    "OBP_WEBUI_API_EXPLORER_URL"=http://localhost:8082
 
 ## Run script
 WORKDIR /usr/local/sbin/
 COPY run_obp .
-CMD /usr/local/sbin/run_obp
-
+#CMD bash run_obp
 
 #Bash
 CMD ["/bin/bash"]
-#CMD /usr/local/sbin/run_obp
-
-#run servers
-#WORKDIR /opt/OBP/API-Explorer
-#CMD sh run.sh
-#WORKDIR /opt/OBP/Social-Finance
-#CMD sh run.sh
-#WORKDIR /opt/OBP/OBP-API
-#CMD sh run.sh
-
-#Observaciones
-# OBP_API
-#  ./mvn.sh install -pl .,obp-commons
-# Social Finance
-#  mvn jetty:run -Djetty.port=8081
-# API EXPLORER
-#  mvn jetty:run -Djetty.port=8082
