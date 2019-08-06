@@ -33,17 +33,20 @@ COPY default.props .
 WORKDIR /opt/OBP/OBP-API
 # /API
 
+
 #Enviroments
 ENV "OBP_API_HOSTNAME"=http://localhost:8080 \
     "OBP_BASE_URL_API_EXPLORER"=http://localhost:8082 \
     "OBP_BASE_URL_SOCIAL_FINANCE"=http://localhost:8081 \
-    "OBP_WEBUI_API_EXPLORER_URL"=http://localhost:8082
+    "OBP_WEBUI_API_EXPLORER_URL"=http://localhost:8082 \
+    "MAVEN_OPTS"="-Xmx1024m -Xms1024m -Xss2048k -XX:MaxMetaspaceSize=1024m" \
+    "_JAVA_OPTIONS"="-Xmx2g"
 
 # Run script
 WORKDIR /usr/local/sbin/
 COPY run_obp .
+RUN bash run_obp
 WORKDIR /opt/OBP/
 COPY run_servers .
-
 #Bash
 CMD ["/bin/bash"]
